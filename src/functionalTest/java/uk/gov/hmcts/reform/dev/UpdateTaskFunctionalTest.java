@@ -32,7 +32,7 @@ class UpdateTaskFunctionalTest {
             .contentType(ContentType.JSON)
             .body(requestBody)
             .when()
-            .post("/tasks")
+            .post("/api/v1/tasks")
             .then()
             .extract().response();
 
@@ -45,7 +45,7 @@ class UpdateTaskFunctionalTest {
             .contentType(ContentType.JSON)
             .body(updateRequestBody)
             .when()
-            .put("/tasks/" + taskId)
+            .put("/api/v1/tasks/" + taskId)
             .then()
             .extract().response();
 

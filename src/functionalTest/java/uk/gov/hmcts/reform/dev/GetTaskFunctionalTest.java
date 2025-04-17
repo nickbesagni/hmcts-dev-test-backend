@@ -32,7 +32,7 @@ class GetTaskFunctionalTest {
             .contentType(ContentType.JSON)
             .body(requestBody)
             .when()
-            .post("/tasks")
+            .post("/api/v1/tasks")
             .then()
             .extract().response();
 
@@ -42,7 +42,7 @@ class GetTaskFunctionalTest {
         Response response = given()
             .contentType(ContentType.JSON)
             .when()
-            .get("/tasks/" + taskId)
+            .get("/api/v1/tasks/" + taskId)
             .then()
             .extract().response();
 

@@ -40,7 +40,7 @@ class ApplicationSmokeTest {
         Response tasksResponse = given()
             .contentType(ContentType.JSON)
             .when()
-            .get("/tasks")
+            .get("/api/v1/tasks")
             .then()
             .extract().response();
 

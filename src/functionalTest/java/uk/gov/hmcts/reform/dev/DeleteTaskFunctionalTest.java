@@ -32,7 +32,7 @@ class DeleteTaskFunctionalTest {
             .contentType(ContentType.JSON)
             .body(requestBody)
             .when()
-            .post("/tasks")
+            .post("/api/v1/tasks")
             .then()
             .extract().response();
 
@@ -42,7 +42,7 @@ class DeleteTaskFunctionalTest {
         Response response = given()
             .contentType(ContentType.JSON)
             .when()
-            .delete("/tasks/" + taskId)
+            .delete("/api/v1/tasks/" + taskId)
             .then()
             .extract().response();
 

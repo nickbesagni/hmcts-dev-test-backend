@@ -12,7 +12,7 @@ import uk.gov.hmcts.reform.dev.repositories.TaskRepository;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("/api/v1/tasks")
 public class TaskController {
 
     @Autowired

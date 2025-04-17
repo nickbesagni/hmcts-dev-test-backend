@@ -68,7 +68,7 @@ Integration Tests
 ## API Endpoints
 ### Create a Task
 ```http
-POST /tasks
+POST /api/v1/tasks
 Content-Type: application/json
 
 {
@@ -81,12 +81,12 @@ Content-Type: application/json
 
 ### Get a Task by ID
 ```http
-GET /tasks/{id}
+GET /api/v1/tasks/{id}
 ```
 
 ### Update a Task
 ```http
-PUT /tasks/{id}
+PUT /api/v1/tasks/{id}
 Content-Type: application/json
 
 {
@@ -99,12 +99,12 @@ Content-Type: application/json
 
 ### Delete a Task
 ```http
-DELETE /tasks/{id}
+DELETE /api/v1/tasks/{id}
 ```
 
 ### Get All Tasks
 ```http
-GET /tasks
+GET /api/v1/tasks
 ```
 
 ## Notes
@@ -119,7 +119,7 @@ Controller: The TaskController provides RESTful endpoints for managing tasks. Th
 Error Handling: The application includes basic error handling for common scenarios, such as task not found.
 
 ## Next steps
-Validation: Adding validation to the Task entity to ensure that required fields are provided and have valid values. Use annotations like @NotNull, @Size, and @Pattern.
+Versioning: Simple URI versioning applied for Task API, but it can be improved by using headers or content negotiation.
 
 Error Handling: Improving error handling by adding custom exception handlers to provide more informative error messages and HTTP status codes.
 

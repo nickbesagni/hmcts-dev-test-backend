@@ -38,7 +38,7 @@ class TaskControllerTest {
         Task task = new Task(null, "Title", "Description", "Pending", LocalDateTime.now());
         when(taskRepository.save(any(Task.class))).thenReturn(task);
 
-        MvcResult result = mockMvc.perform(post("/tasks")
+        MvcResult result = mockMvc.perform(post("/api/v1/tasks")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"title\":\"Title\",\"description\":\"Description\",\"status\":\"Pending\",\"dueDateTime\":\"2025-04-16T22:00:00\"}"))
                 .andExpect(status().isOk())
@@ -53,7 +53,7 @@ class TaskControllerTest {
         Task task = new Task(1L, "Title", "Description", "Pending", LocalDateTime.now());
         when(taskRepository.findById(1L)).thenReturn(Optional.of(task));
 
-        MvcResult result = mockMvc.perform(get("/tasks/1"))
+        MvcResult result = mockMvc.perform(get("/api/v1/tasks/1"))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -67,7 +67,7 @@ class TaskControllerTest {
         when(taskRepository.findById(1L)).thenReturn(Optional.of(task));
         when(taskRepository.save(any(Task.class))).thenReturn(task);
 
-        MvcResult result = mockMvc.perform(put("/tasks/1")
+        MvcResult result = mockMvc.perform(put("/api/v1/tasks/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"title\":\"Updated Title\",\"description\":\"Updated Description\",\"status\":\"Completed\",\"dueDateTime\":\"2025-04-16T22:00:00\"}"))
                 .andExpect(status().isOk())
@@ -79,7 +79,7 @@ class TaskControllerTest {
     @Test
     @DisplayName("Should delete a task")
     void deleteTask() throws Exception {
-        mockMvc.perform(delete("/tasks/1"))
+        mockMvc.perform(delete("/api/v1/tasks/1"))
                 .andExpect(status().isOk());
     }
 
@@ -90,7 +90,7 @@ class TaskControllerTest {
         Task task2 = new Task(2L, "Title2", "Description2", "Completed", LocalDateTime.now());
         when(taskRepository.findAll()).thenReturn(Arrays.asList(task1, task2));
 
-        MvcResult result = mockMvc.perform(get("/tasks"))
+        MvcResult result = mockMvc.perform(get("/api/v1/tasks"))
                 .andExpect(status().isOk())
                 .andReturn();
 
