@@ -33,7 +33,7 @@ class TaskControllerIntegrationTest {
     void createTask() throws Exception {
         String requestBody = "{\"title\":\"Title\",\"description\":\"Description\",\"status\":\"Pending\",\"dueDateTime\":\"2025-04-16T22:00:00\"}";
 
-        MvcResult result = mockMvc.perform(post("/tasks")
+        MvcResult result = mockMvc.perform(post("/api/v1/tasks")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
                 .andExpect(status().isOk())
@@ -48,7 +48,7 @@ class TaskControllerIntegrationTest {
         Task task = new Task(null, "Title", "Description", "Pending", LocalDateTime.now());
         task = taskRepository.save(task);
 
-        MvcResult result = mockMvc.perform(get("/tasks/" + task.getId()))
+        MvcResult result = mockMvc.perform(get("/api/v1/tasks/" + task.getId()))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -63,7 +63,7 @@ class TaskControllerIntegrationTest {
 
         String updateRequestBody = "{\"title\":\"Updated Title\",\"description\":\"Updated Description\",\"status\":\"Completed\",\"dueDateTime\":\"2025-04-16T22:00:00\"}";
 
-        MvcResult result = mockMvc.perform(put("/tasks/" + task.getId())
+        MvcResult result = mockMvc.perform(put("/api/v1/tasks/" + task.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(updateRequestBody))
                 .andExpect(status().isOk())
@@ -78,7 +78,7 @@ class TaskControllerIntegrationTest {
         Task task = new Task(null, "Title", "Description", "Pending", LocalDateTime.now());
         task = taskRepository.save(task);
 
-        mockMvc.perform(delete("/tasks/" + task.getId()))
+        mockMvc.perform(delete("/api/v1/tasks/" + task.getId()))
                 .andExpect(status().isOk());
 
         Optional<Task> deletedTask = taskRepository.findById(task.getId());
@@ -93,7 +93,7 @@ class TaskControllerIntegrationTest {
         taskRepository.save(task1);
         taskRepository.save(task2);
 
-        MvcResult result = mockMvc.perform(get("/tasks"))
+        MvcResult result = mockMvc.perform(get("/api/v1/tasks"))
                 .andExpect(status().isOk())
                 .andReturn();
 

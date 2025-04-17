@@ -31,7 +31,7 @@ class CreateTaskFunctionalTest {
             .contentType(ContentType.JSON)
             .body(requestBody)
             .when()
-            .post("/tasks")
+            .post("/api/v1/tasks")
             .then()
             .extract().response();
 
